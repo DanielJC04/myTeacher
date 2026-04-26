@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buscar tutores — myTEACHER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <link rel="stylesheet" href="/css/search.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/index.html" class="logo">my<span>TEACHER</span></a>
+      <nav class="nav-links">
+        <a href="/pages/search.html" class="active">Buscar tutores</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/pages/login.html" class="btn-ghost">Iniciar sesión</a>
+        <a href="/pages/register.html" class="btn-primary">Registrarse</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE BÚSQUEDA SUPERIOR -->
+  <div class="search-top-bar">
+    <div class="container search-top-inner">
+      <div class="search-input-wrap">
+        <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" placeholder="Busca por nombre o materia..." />
+        <button class="btn-primary" id="searchBtn">Buscar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container search-layout">
+
+    <!-- SIDEBAR DE FILTROS -->
+    <aside class="filters-sidebar">
+      <div class="filters-header">
+        <h3>Filtros</h3>
+        <button class="clear-filters" id="clearFilters">Limpiar</button>
+      </div>
+
+      <!-- Materia -->
+      <div class="filter-group">
+        <h4>Materia</h4>
+        <label class="filter-check"><input type="checkbox" value="Matemáticas" name="subject"/> Matemáticas <span>340</span></label>
+        <label class="filter-check"><input type="checkbox" value="Inglés" name="subject"/> Inglés <span>480</span></label>
+        <label class="filter-check"><input type="checkbox" value="Programación" name="subject"/> Programación <span>195</span></label>
+        <label class="filter-check"><input type="checkbox" value="Física" name="subject"/> Física <span>130</span></label>
+        <label class="filter-check"><input type="checkbox" value="Química" name="subject"/> Química <span>98</span></label>
+        <label class="filter-check"><input type="checkbox" value="Música" name="subject"/> Música <span>160</span></label>
+        <label class="filter-check"><input type="checkbox" value="Arte" name="subject"/> Arte <span>76</span></label>
+        <label class="filter-check"><input type="checkbox" value="Historia" name="subject"/> Historia <span>142</span></label>
+      </div>
+
+      <!-- Modalidad -->
+      <div class="filter-group">
+        <h4>Modalidad</h4>
+        <label class="filter-check"><input type="checkbox" value="online" name="modality"/> En línea</label>
+        <label class="filter-check"><input type="checkbox" value="presencial" name="modality"/> Presencial</label>
+      </div>
+
+      <!-- Calificación -->
+      <div class="filter-group">
+        <h4>Calificación mínima</h4>
+        <label class="filter-radio"><input type="radio" name="rating" value="0" checked/> Todas</label>
+        <label class="filter-radio"><input type="radio" name="rating" value="4"/> ★ 4.0 - 4.5</label>
+        <label class="filter-radio"><input type="radio" name="rating" value="4.5"/> ★ 4.5 - 4.8</label>
+        <label class="filter-radio"><input type="radio" name="rating" value="4.8"/> ★ 4.8 - 5.0</label>
+      </div>
+
+      <!-- Precio -->
+      <div class="filter-group">
+        <h4>Precio por hora (COP)</h4>
+        <div class="range-row">
+          <input type="number" id="priceMin" placeholder="Min" min="0" max="200"/>
+          <span>—</span>
+          <input type="number" id="priceMax" placeholder="Max" min="0" max="200"/>
+        </div>
+      </div>
+
+      <button class="btn-primary btn-full" id="applyFilters">Aplicar filtros</button>
+    </aside>
+
+    <!-- RESULTADOS -->
+    <section class="results-section">
+      <div class="results-header">
+        <p class="results-count"><span id="resultsCount">8</span> tutores encontrados</p>
+        <select id="sortSelect" class="sort-select">
+          <option value="rating">Mayor calificación</option>
+          <option value="price-asc">Menor precio</option>
+          <option value="price-desc">Mayor precio</option>
+          <option value="reviews">Más reseñas</option>
+        </select>
+      </div>
+
+      <!-- GRID DE TARJETAS -->
+      <div class="tutors-results" id="tutorsGrid">
+
+        <div class="tutor-result-card" data-subject="Matemáticas,Física" data-rating="4.9" data-price="25" data-modality="online,presencial" data-reviews="128">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura Gómez"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Laura Gómez</h3>
+                <p class="tutor-subject">📐 Matemáticas · Física</p>
+              </div>
+              <div class="tutor-price-badge">$60.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Ingeniera con 5 años de experiencia enseñando cálculo diferencial e integral a nivel universitario.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.4</span>
+                <span class="reviews-num">(128 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">En línea</span>
+                <span class="badge">Presencial</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=1" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+        <div class="tutor-result-card" data-subject="Inglés,Francés" data-rating="4.8" data-price="20" data-modality="online" data-reviews="96">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Martínez"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Carlos Martínez</h3>
+                <p class="tutor-subject">🌐 Inglés · Francés</p>
+              </div>
+              <div class="tutor-price-badge">$50.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Certificado Cambridge con experiencia en preparación IELTS, TOEFL y clases conversacionales.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.8</span>
+                <span class="reviews-num">(96 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">En línea</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=2" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+        <div class="tutor-result-card" data-subject="Programación" data-rating="5.0" data-price="30" data-modality="online" data-reviews="74">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana Torres"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Ana Torres</h3>
+                <p class="tutor-subject">💻 Programación · IA</p>
+              </div>
+              <div class="tutor-price-badge">$65.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Desarrolladora fullstack especializada en Python, JavaScript y Machine Learning aplicado.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">5.0</span>
+                <span class="reviews-num">(74 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">En línea</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=3" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+        <div class="tutor-result-card" data-subject="Música" data-rating="4.7" data-price="18" data-modality="online,presencial" data-reviews="53">
+          <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Diego Ramírez"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Diego Ramírez</h3>
+                <p class="tutor-subject">🎸 Guitarra · Piano</p>
+              </div>
+              <div class="tutor-price-badge">$40.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Músico profesional egresado del conservatorio, clases para todos los niveles desde principiante.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-num">4.7</span>
+                <span class="reviews-num">(53 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">En línea</span>
+                <span class="badge">Presencial</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=4" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+        <div class="tutor-result-card" data-subject="Química,Física" data-rating="4.9" data-price="22" data-modality="presencial" data-reviews="87">
+          <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Sofía Herrera"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Sofía Herrera</h3>
+                <p class="tutor-subject">🔬 Química · Física</p>
+              </div>
+              <div class="tutor-price-badge">$55.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Doctora en Química con amplia experiencia preparando estudiantes para exámenes nacionales.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.9</span>
+                <span class="reviews-num">(87 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">Presencial</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=5" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+        <div class="tutor-result-card" data-subject="Historia,Arte" data-rating="4.6" data-price="15" data-modality="online" data-reviews="41">
+          <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Mateo Vargas"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Mateo Vargas</h3>
+                <p class="tutor-subject">📖 Historia · Arte</p>
+              </div>
+              <div class="tutor-price-badge">$65.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Licenciado en Humanidades con enfoque en historia latinoamericana e historia del arte.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-num">4.6</span>
+                <span class="reviews-num">(41 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">En línea</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=6" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+        <div class="tutor-result-card" data-subject="Matemáticas" data-rating="4.8" data-price="28" data-modality="online,presencial" data-reviews="112">
+          <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Andrés Ospina"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Andrés Ospina</h3>
+                <p class="tutor-subject">📐 Matemáticas · Estadística</p>
+              </div>
+              <div class="tutor-price-badge">$55.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Magíster en Matemáticas Aplicadas. Especialista en cálculo, álgebra y estadística universitaria.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★★</span>
+                <span class="rating-num">4.8</span>
+                <span class="reviews-num">(112 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">En línea</span>
+                <span class="badge">Presencial</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=7" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+        <div class="tutor-result-card" data-subject="Inglés" data-rating="4.5" data-price="16" data-modality="online" data-reviews="33">
+          <img src="https://randomuser.me/api/portraits/women/80.jpg" alt="Valeria Luna"/>
+          <div class="card-body">
+            <div class="card-top">
+              <div>
+                <h3 class="tutor-name">Valeria Luna</h3>
+                <p class="tutor-subject">🌐 Inglés · Español</p>
+              </div>
+              <div class="tutor-price-badge">$48.000<small>/h</small></div>
+            </div>
+            <p class="tutor-bio">Bilingüe nativa con experiencia enseñando inglés a niños, adolescentes y adultos profesionales.</p>
+            <div class="card-footer">
+              <div class="rating-row">
+                <span class="stars">★★★★☆</span>
+                <span class="rating-num">4.5</span>
+                <span class="reviews-num">(33 reseñas)</span>
+              </div>
+              <div class="badges">
+                <span class="badge">En línea</span>
+              </div>
+            </div>
+            <a href="tutor-profile.html?id=8" class="btn-outline btn-card">Ver perfil</a>
+          </div>
+        </div>
+
+      </div><!-- /tutorsGrid -->
+
+      <!-- Estado vacío (oculto por defecto) -->
+      <div class="empty-state" id="emptyState" style="display:none">
+        <span>🔍</span>
+        <h3>Sin resultados</h3>
+        <p>No encontramos tutores con esos filtros. Intenta ampliar tu búsqueda.</p>
+        <button class="btn-outline" id="resetEmpty">Ver todos los tutores</button>
+      </div>
+
+    </section>
+  </div><!-- /search-layout -->
+
+  <script src="/js/search.js"></script>
+</body>
+</html>

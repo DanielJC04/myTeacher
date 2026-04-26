@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>myTEACHER — Encuentra tu tutor ideal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">my<span>TEACHER</span></a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#como-funciona">¿Cómo funciona?</a>
+        <a href="#materias">Materias</a>
+        <a href="#tutores">Tutores</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/pages/login.html" class="btn-ghost">Iniciar sesión</a>
+        <a href="/pages/register.html" class="btn-primary">Registrarse</a>
+      </div>
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Encuentra el tutor perfecto para ti</h1>
+      <p class="hero-sub">Conectamos estudiantes con tutores calificados en cualquier materia. Online o presencial.</p>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="¿Qué quieres aprender? Ej: Matemáticas..."/>
+        <button class="btn-primary" id="searchBtn">Buscar tutor</button>
+      </div>
+      <div class="quick-tags">
+        <span class="tag-label">Populares:</span>
+        <button class="tag" onclick="goToSearch('Inglés')">Inglés</button>
+        <button class="tag" onclick="goToSearch('Cálculo')">Cálculo</button>
+        <button class="tag" onclick="goToSearch('Programación')">Programación</button>
+        <button class="tag" onclick="goToSearch('Física')">Física</button>
+        <button class="tag" onclick="goToSearch('Guitarra')">Guitarra</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ ES MYTEACHER -->
+<section class="section what-is">
+  <div class="container what-is-inner">
+    <div class="what-is-text">
+      <span class="section-label">¿Qué es myTEACHER?</span>
+      <h2>La forma más fácil de aprender con alguien que sabe</h2>
+      <p>myTEACHER es una plataforma que conecta a estudiantes con tutores calificados en cualquier materia, nivel educativo y modalidad. Ya sea que necesites reforzar un tema, prepararte para un examen o aprender algo nuevo desde cero, aquí encuentras al tutor ideal para ti.</p>
+      <p>Nuestros tutores son profesionales verificados con experiencia real. Tú eliges la materia, el horario y si prefieres la clase en línea o presencial. Sin complicaciones.</p>
+      <a href="/pages/search.html" class="btn-primary">Encontrar mi tutor</a>
+    </div>
+    <div class="what-is-visual">
+      <div class="stat-box">
+        <strong>+2.000</strong>
+        <span>Tutores activos</span>
+      </div>
+      <div class="stat-box">
+        <strong>+15.000</strong>
+        <span>Clases impartidas</span>
+      </div>
+      <div class="stat-box highlight">
+        <strong>98%</strong>
+        <span>Estudiantes satisfechos</span>
+      </div>
+      <div class="stat-box">
+        <strong>+120</strong>
+        <span>Materias disponibles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="section bg-light" id="como-funciona">
+    <div class="container">
+      <h2 class="section-title">¿Cómo funciona?</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <h3>Busca tu tutor</h3>
+          <p>Filtra por materia, nivel educativo y disponibilidad.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <h3>Reserva la sesión</h3>
+          <p>Elige el horario que más te convenga y confirma tu reserva.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <h3>Aprende y avanza</h3>
+          <p>Conéctate por videollamada o en persona con tu tutor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIAS -->
+  <section class="section" id="materias">
+    <div class="container">
+      <h2 class="section-title">Materias populares</h2>
+      <div class="subjects-grid">
+        <div class="subject-card"><span>📐</span><p>Matemáticas</p></div>
+        <div class="subject-card"><span>🔬</span><p>Ciencias</p></div>
+        <div class="subject-card"><span>🌐</span><p>Inglés</p></div>
+        <div class="subject-card"><span>💻</span><p>Programación</p></div>
+        <div class="subject-card"><span>🎸</span><p>Música</p></div>
+        <div class="subject-card"><span>🎨</span><p>Arte</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TUTORES -->
+  <section class="section bg-light" id="tutores">
+    <div class="container">
+      <h2 class="section-title">Tutores destacados</h2>
+      <div class="tutors-grid">
+
+        <div class="tutor-card">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura Gómez"/>
+          <div class="tutor-info">
+            <div class="tutor-top">
+              <strong>Laura Gómez</strong>
+              <span class="price">$60.000/h</span>
+            </div>
+            <p class="subject">Matemáticas · Física</p>
+            <p class="rating">★★★★★ <span>4.9 (128 reseñas)</span></p>
+            <button class="btn-outline" onclick="window.location.href='pages/tutor-profile.html?id=1'">Ver perfil</button>
+          </div>
+        </div>
+
+        <div class="tutor-card">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Martínez"/>
+          <div class="tutor-info">
+            <div class="tutor-top">
+              <strong>Carlos Martínez</strong>
+              <span class="price">$50.000/h</span>
+            </div>
+            <p class="subject">Inglés · Francés</p>
+            <p class="rating">★★★★★ <span>4.8 (96 reseñas)</span></p>
+            <button class="btn-outline" onclick="window.location.href='pages/tutor-profile.html?id=2'">Ver perfil</button>
+          </div>
+        </div>
+
+        <div class="tutor-card">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana Torres"/>
+          <div class="tutor-info">
+            <div class="tutor-top">
+              <strong>Ana Torres</strong>
+              <span class="price">$65.000/h</span>
+            </div>
+            <p class="subject">Programación · IA</p>
+            <p class="rating">★★★★★ <span>5.0 (74 reseñas)</span></p>
+            <button class="btn-outline" onclick="window.location.href='pages/tutor-profile.html?id=3'">Ver perfil</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="center-btn">
+        <a href="pages/search.html" class="btn-outline">Ver todos los tutores </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#" class="logo">my<span>TEACHER</span></a>
+      <p>© 2026 myTEACHER. Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="#">Términos</a>
+        <a href="#">Contacto</a>
+        <a href="#">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil de tutor — myTEACHER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <link rel="stylesheet" href="/css/search.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/index.html" class="logo">my<span>TEACHER</span></a>
+      <nav class="nav-links">
+        <a href="/pages/search.html">Buscar tutores</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="/pages/login.html" class="btn-ghost">Iniciar sesión</a>
+        <a href="/pages/register.html" class="btn-primary">Registrarse</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <a href="/pages/search.html">← Volver a resultados</a>
+    </div>
+  </div>
+
+  <!-- CONTENIDO DEL PERFIL -->
+  <div class="container profile-layout">
+
+    <!-- COLUMNA IZQUIERDA: info del tutor -->
+    <div class="profile-main">
+
+      <!-- Cabecera del perfil -->
+      <div class="profile-header-card">
+        <img id="profileImg" src="" alt="Tutor" class="profile-avatar"/>
+        <div class="profile-intro">
+          <h1 id="profileName">Cargando...</h1>
+          <p id="profileSubject" class="profile-subject"></p>
+          <div class="profile-rating-row">
+            <span id="profileStars" class="stars"></span>
+            <span id="profileRating" class="rating-num"></span>
+            <span id="profileReviews" class="reviews-num"></span>
+          </div>
+          <div id="profileBadges" class="badges"></div>
+        </div>
+      </div>
+
+      <!-- Sobre mí -->
+      <div class="profile-section">
+        <h2>Sobre mí</h2>
+        <p id="profileBio"></p>
+      </div>
+
+      <!-- Experiencia y formación -->
+      <div class="profile-section">
+        <h2>Formación y experiencia</h2>
+        <ul class="experience-list" id="profileExperience"></ul>
+      </div>
+
+      <!-- Reseñas -->
+      <div class="profile-section">
+        <h2>Reseñas de estudiantes</h2>
+        <div class="reviews-list" id="reviewsList"></div>
+      </div>
+
+    </div>
+
+    <!-- COLUMNA DERECHA: reserva -->
+    <aside class="profile-sidebar">
+
+      <!-- Card de precio y reserva -->
+      <div class="booking-card">
+        <div class="booking-price">
+          <span id="bookingPrice"></span>
+          <small>por hora</small>
+        </div>
+
+        <div class="booking-field">
+          <label>Modalidad</label>
+          <select id="bookingModality">
+            <option value="">Selecciona...</option>
+          </select>
+        </div>
+
+        <div class="booking-field">
+          <label>Fecha</label>
+          <input type="date" id="bookingDate"/>
+        </div>
+
+        <div class="booking-field">
+          <label>Hora</label>
+          <div class="time-slots" id="timeSlots">
+            <button class="slot" data-time="09:00">09:00</button>
+            <button class="slot" data-time="11:00">11:00</button>
+            <button class="slot" data-time="14:00">14:00</button>
+            <button class="slot" data-time="16:00">16:00</button>
+            <button class="slot" data-time="18:00">18:00</button>
+            <button class="slot" data-time="20:00">20:00</button>
+          </div>
+        </div>
+
+        <div class="booking-summary" id="bookingSummary" style="display:none">
+          <div class="summary-row"><span>Precio/hora</span><span id="summaryPrice"></span></div>
+          <div class="summary-row total"><span>Total</span><span id="summaryTotal"></span></div>
+        </div>
+
+        <button class="btn-primary btn-full" id="bookingBtn">Reservar sesión</button>
+        <p class="booking-note">Sin cargos hasta confirmar</p>
+      </div>
+
+      <!-- Info rápida -->
+      <div class="quick-info-card">
+        <div class="quick-row"><span>📍</span><span id="quickLocation"></span></div>
+        <div class="quick-row"><span>🗣️</span><span id="quickLanguages"></span></div>
+        <div class="quick-row"><span>🕐</span><span id="quickResponse"></span></div>
+        <div class="quick-row"><span>✅</span><span id="quickClasses"></span></div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- MODAL DE CONFIRMACIÓN -->
+  <div class="modal-overlay" id="modalOverlay" style="display:none">
+    <div class="modal-box">
+      <span class="modal-icon">🎉</span>
+      <h3>¡Sesión reservada!</h3>
+      <p id="modalText"></p>
+      <button class="btn-primary" id="modalClose">Aceptar</button>
+    </div>
+  </div>
+
+  <script src="/js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel del tutor — myTEACHER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <link rel="stylesheet" href="/css/dashboard.css"/>
+</head>
+<body class="dashboard-body">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/index.html" class="logo">my<span>TEACHER</span></a>
+      <div class="nav-actions">
+        <span class="user-greeting">👋 Hola, <strong>Laura</strong></span>
+        <a href="/pages/login.html" class="btn-ghost">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-layout container">
+
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar">
+      <div class="dash-profile-mini">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura"/>
+        <div>
+          <strong>Laura Gómez</strong>
+          <span class="tutor-badge-small">Tutora ✓</span>
+        </div>
+      </div>
+      <nav class="dash-nav">
+        <button class="dash-nav-item active" data-tab="resumen">📊 Resumen</button>
+        <button class="dash-nav-item" data-tab="agenda">📅 Mi agenda</button>
+        <button class="dash-nav-item" data-tab="estudiantes">👥 Estudiantes</button>
+        <button class="dash-nav-item" data-tab="ganancias">💰 Ganancias</button>
+        <button class="dash-nav-item" data-tab="perfil">👤 Mi perfil</button>
+      </nav>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="dash-main">
+
+      <!-- TAB: RESUMEN -->
+      <div class="dash-tab active" id="tab-resumen">
+        <h1 class="dash-title">Panel del tutor</h1>
+
+        <div class="dash-stats">
+          <div class="dash-stat-card">
+            <span class="stat-icon">📅</span>
+            <div>
+              <strong>4</strong>
+              <p>Clases esta semana</p>
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">👥</span>
+            <div>
+              <strong>12</strong>
+              <p>Estudiantes activos</p>
+            </div>
+          </div>
+          <div class="dash-stat-card highlight">
+            <span class="stat-icon">💰</span>
+            <div>
+              <strong>$1.600.000</strong>
+              <p>Ganancias este mes</p>
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">⭐</span>
+            <div>
+              <strong>4.9</strong>
+              <p>Calificación promedio</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Próxima clase -->
+        <div class="dash-section">
+          <h2>Próxima clase</h2>
+          <div class="next-session-card">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Andrés"/>
+            <div class="next-session-info">
+              <strong>Matemáticas — Cálculo diferencial</strong>
+              <p>👤 Estudiante: Andrés Peña</p>
+              <p>📅 27 de abril · 10:00 AM · 1 hora</p>
+              <p>💻 Modalidad: En línea</p>
+            </div>
+            <div class="next-session-actions">
+              <button class="btn-primary" onclick="alert('Iniciar videollamada: meet.google.com/abc-xyz')">
+                Iniciar clase
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Solicitudes pendientes -->
+        <div class="dash-section">
+          <h2>Solicitudes pendientes <span class="badge-count">2</span></h2>
+          <div class="requests-list">
+
+            <div class="request-card" id="req1">
+              <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Camila"/>
+              <div class="request-info">
+                <strong>Camila Herrera</strong>
+                <p>Quiere una sesión de Matemáticas</p>
+                <p>📅 30 de abril · 2:00 PM · 1 hora</p>
+              </div>
+              <div class="request-actions">
+                <button class="btn-primary btn-sm" onclick="acceptRequest('req1', 'Camila Herrera')">Aceptar</button>
+                <button class="btn-ghost-red btn-sm" onclick="rejectRequest('req1')">Rechazar</button>
+              </div>
+            </div>
+
+            <div class="request-card" id="req2">
+              <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Felipe"/>
+              <div class="request-info">
+                <strong>Felipe Ríos</strong>
+                <p>Quiere una sesión de Física</p>
+                <p>📅 1 de mayo · 4:00 PM · 2 horas</p>
+              </div>
+              <div class="request-actions">
+                <button class="btn-primary btn-sm" onclick="acceptRequest('req2', 'Felipe Ríos')">Aceptar</button>
+                <button class="btn-ghost-red btn-sm" onclick="rejectRequest('req2')">Rechazar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: AGENDA -->
+      <div class="dash-tab" id="tab-agenda">
+        <h1 class="dash-title">Mi agenda</h1>
+
+        <!-- Semana actual -->
+        <div class="week-header">
+          <button class="btn-ghost" id="prevWeek">← Anterior</button>
+          <span id="weekLabel">Semana del 21 al 27 de abril</span>
+          <button class="btn-ghost" id="nextWeek">Siguiente →</button>
+        </div>
+
+        <div class="week-grid" id="weekGrid">
+          <div class="day-col">
+            <div class="day-label">Lun 21</div>
+            <div class="day-slot empty">Sin clases</div>
+          </div>
+          <div class="day-col">
+            <div class="day-label">Mar 22</div>
+            <div class="day-slot filled">
+              <strong>Inglés</strong>
+              <span>Andrés P. · 11AM</span>
+            </div>
+          </div>
+          <div class="day-col">
+            <div class="day-label">Mié 23</div>
+            <div class="day-slot empty">Sin clases</div>
+          </div>
+          <div class="day-col">
+            <div class="day-label">Jue 24</div>
+            <div class="day-slot filled">
+              <strong>Matemáticas</strong>
+              <span>Valentina R. · 3PM</span>
+            </div>
+          </div>
+          <div class="day-col">
+            <div class="day-label">Vie 25</div>
+            <div class="day-slot filled">
+              <strong>Física</strong>
+              <span>Juan T. · 10AM</span>
+            </div>
+          </div>
+          <div class="day-col">
+            <div class="day-label">Sáb 26</div>
+            <div class="day-slot empty">Sin clases</div>
+          </div>
+          <div class="day-col">
+            <div class="day-label">Dom 27</div>
+            <div class="day-slot filled">
+              <strong>Matemáticas</strong>
+              <span>Andrés P. · 10AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista detallada -->
+        <div class="dash-section" style="margin-top:32px">
+          <h2>Próximas clases</h2>
+          <div class="sessions-list">
+
+            <div class="session-card">
+              <div class="session-date-col">
+                <strong>27</strong><span>Abr</span>
+              </div>
+              <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Andrés"/>
+              <div class="session-info">
+                <strong>Matemáticas — Cálculo diferencial</strong>
+                <p>Andrés Peña · 10:00 AM · 1 hora · En línea</p>
+                <span class="session-badge proximas">Próxima</span>
+              </div>
+              <div class="session-actions">
+                <button class="btn-primary btn-sm" onclick="alert('Iniciar clase')">Iniciar</button>
+              </div>
+            </div>
+
+            <div class="session-card">
+              <div class="session-date-col">
+                <strong>29</strong><span>Abr</span>
+              </div>
+              <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Valentina"/>
+              <div class="session-info">
+                <strong>Matemáticas — Límites y continuidad</strong>
+                <p>Valentina Ríos · 3:00 PM · 1.5 horas · En línea</p>
+                <span class="session-badge proximas">Próxima</span>
+              </div>
+              <div class="session-actions">
+                <button class="btn-outline btn-sm" onclick="cancelSession(this, 'clase con Valentina')">Cancelar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: ESTUDIANTES -->
+      <div class="dash-tab" id="tab-estudiantes">
+        <h1 class="dash-title">Mis estudiantes</h1>
+        <div class="students-grid">
+
+          <div class="student-card">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Andrés"/>
+            <div class="student-info">
+              <strong>Andrés Peña</strong>
+              <p>Matemáticas · 8 clases</p>
+              <span class="session-badge proximas">Activo</span>
+            </div>
+            <div class="student-progress">
+              <span>Progreso</span>
+              <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+              <span>75%</span>
+            </div>
+          </div>
+
+          <div class="student-card">
+            <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Valentina"/>
+            <div class="student-info">
+              <strong>Valentina Ríos</strong>
+              <p>Matemáticas · 5 clases</p>
+              <span class="session-badge proximas">Activa</span>
+            </div>
+            <div class="student-progress">
+              <span>Progreso</span>
+              <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+              <span>60%</span>
+            </div>
+          </div>
+
+          <div class="student-card">
+            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Juan"/>
+            <div class="student-info">
+              <strong>Juan Torres</strong>
+              <p>Física · 3 clases</p>
+              <span class="session-badge completadas">Inactivo</span>
+            </div>
+            <div class="student-progress">
+              <span>Progreso</span>
+              <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+              <span>40%</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB: GANANCIAS -->
+      <div class="dash-tab" id="tab-ganancias">
+        <h1 class="dash-title">Mis ganancias</h1>
+
+        <div class="dash-stats">
+          <div class="dash-stat-card highlight">
+            <span class="stat-icon">💰</span>
+            <div><strong>$1.600.000</strong><p>Este mes (Abril)</p></div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">📈</span>
+            <div><strong>$4.100.000</strong><p>Total acumulado</p></div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">📅</span>
+            <div><strong>13</strong><p>Clases este mes</p></div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">⏱️</span>
+            <div><strong>$60.000/h</strong><p>Tarifa actual</p></div>
+          </div>
+        </div>
+
+        <div class="dash-section">
+          <h2>Historial de pagos</h2>
+          <table class="earnings-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Estudiante</th>
+                <th>Materia</th>
+                <th>Duración</th>
+                <th>Monto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>22 Abr</td>
+                <td>Andrés Peña</td>
+                <td>Matemáticas</td>
+                <td>1h</td>
+                <td class="amount">$60.000</td>
+              </tr>
+              <tr>
+                <td>19 Abr</td>
+                <td>Valentina Ríos</td>
+                <td>Matemáticas</td>
+                <td>1.5h</td>
+                <td class="amount">$38.000</td>
+              </tr>
+              <tr>
+                <td>17 Abr</td>
+                <td>Juan Torres</td>
+                <td>Física</td>
+                <td>2h</td>
+                <td class="amount">$50.000</td>
+              </tr>
+              <tr>
+                <td>15 Abr</td>
+                <td>Andrés Peña</td>
+                <td>Matemáticas</td>
+                <td>1h</td>
+                <td class="amount">$60.000</td>
+              </tr>
+              <tr>
+                <td>10 Abr</td>
+                <td>Valentina Ríos</td>
+                <td>Física</td>
+                <td>1h</td>
+                <td class="amount">$55.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB: MI PERFIL -->
+      <div class="dash-tab" id="tab-perfil">
+        <h1 class="dash-title">Mi perfil de tutor</h1>
+        <div class="profile-form-card">
+          <div class="profile-avatar-row">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura"/>
+            <div>
+              <button class="btn-outline btn-sm">Cambiar foto</button>
+              <p>JPG o PNG. Máx 2MB</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Nombre completo</label>
+              <input type="text" value="Laura Gómez"/>
+            </div>
+            <div class="field-group">
+              <label>Correo electrónico</label>
+              <input type="email" value="laura@email.com"/>
+            </div>
+            <div class="field-group">
+              <label>Materia principal</label>
+              <input type="text" value="Matemáticas"/>
+            </div>
+            <div class="field-group">
+              <label>Precio por hora (USD)</label>
+              <input type="number" value="60000"/>
+            </div>
+            <div class="field-group" style="grid-column: 1/-1">
+              <label>Biografía</label>
+              <textarea rows="3">Ingeniera con 5 años de experiencia enseñando cálculo diferencial e integral a nivel universitario.</textarea>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="saveProfile()">Guardar cambios</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi panel — myTEACHER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/styles.css"/>
+  <link rel="stylesheet" href="/css/dashboard.css"/>
+</head>
+<body class="dashboard-body">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/index.html" class="logo">my<span>TEACHER</span></a>
+      <nav class="nav-links">
+        <a href="/pages/search.html">Buscar tutores</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="user-greeting">👋 Hola, <strong id="greetingName">Estudiante</strong></span>
+        <a href="/pages/login.html" class="btn-ghost" id="logoutBtn">Cerrar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-layout container">
+
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar">
+      <div class="dash-profile-mini">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Perfil" id="sidebarAvatar"/>
+        <div>
+          <strong id="sidebarName">Andrés Peña</strong>
+          <span>Estudiante</span>
+        </div>
+      </div>
+      <nav class="dash-nav">
+        <button class="dash-nav-item active" data-tab="resumen">
+          📊 Resumen
+        </button>
+        <button class="dash-nav-item" data-tab="tutorias">
+          📅 Mis tutorías
+        </button>
+        <button class="dash-nav-item" data-tab="tutores">
+          ⭐ Mis tutores
+        </button>
+        <button class="dash-nav-item" data-tab="perfil">
+          👤 Mi perfil
+        </button>
+      </nav>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="dash-main">
+
+      <!-- TAB: RESUMEN -->
+      <div class="dash-tab active" id="tab-resumen">
+        <h1 class="dash-title">Bienvenido, <span id="welcomeName">Andrés</span> 👋</h1>
+
+        <!-- Tarjetas de stats -->
+        <div class="dash-stats">
+          <div class="dash-stat-card">
+            <span class="stat-icon">📅</span>
+            <div>
+              <strong>3</strong>
+              <p>Tutorías próximas</p>
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">✅</span>
+            <div>
+              <strong>12</strong>
+              <p>Clases completadas</p>
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">⭐</span>
+            <div>
+              <strong>4</strong>
+              <p>Tutores distintos</p>
+            </div>
+          </div>
+          <div class="dash-stat-card">
+            <span class="stat-icon">⏱️</span>
+            <div>
+              <strong>18h</strong>
+              <p>Horas de estudio</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Próxima tutoría -->
+        <div class="dash-section">
+          <h2>Próxima tutoría</h2>
+          <div class="next-session-card">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura"/>
+            <div class="next-session-info">
+              <strong>Matemáticas con Laura Gómez</strong>
+              <p>📅 27 de abril · 10:00 AM</p>
+              <p>💻 Modalidad: En línea</p>
+            </div>
+            <div class="next-session-actions">
+              <button class="btn-primary" onclick="alert('Enlace de videollamada: meet.google.com/abc-xyz')">
+                Unirse
+              </button>
+              <button class="btn-ghost-red" onclick="cancelSession(this, 'Matemáticas con Laura Gómez')">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actividad reciente -->
+        <div class="dash-section">
+          <h2>Actividad reciente</h2>
+          <div class="activity-list">
+            <div class="activity-item">
+              <span class="activity-icon completed">✓</span>
+              <div>
+                <p><strong>Clase de Inglés</strong> con Carlos Martínez</p>
+                <span>Completada · 22 de abril · 2h</span>
+              </div>
+              <button class="btn-rate" onclick="openRating('Carlos Martínez')">Calificar</button>
+            </div>
+            <div class="activity-item">
+              <span class="activity-icon completed">✓</span>
+              <div>
+                <p><strong>Clase de Matemáticas</strong> con Laura Gómez</p>
+                <span>Completada · 19 de abril · 1.5h</span>
+              </div>
+              <button class="btn-rate" onclick="openRating('Laura Gómez')">Calificar</button>
+            </div>
+            <div class="activity-item">
+              <span class="activity-icon completed">✓</span>
+              <div>
+                <p><strong>Clase de Programación</strong> con Ana Torres</p>
+                <span>Completada · 15 de abril · 2h</span>
+              </div>
+              <span class="rated-badge">✓ Calificada</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: TUTORÍAS -->
+      <div class="dash-tab" id="tab-tutorias">
+        <h1 class="dash-title">Mis tutorías</h1>
+
+        <!-- Filtros de estado -->
+        <div class="session-tabs">
+          <button class="session-tab active" data-filter="proximas">Próximas</button>
+          <button class="session-tab" data-filter="completadas">Completadas</button>
+          <button class="session-tab" data-filter="canceladas">Canceladas</button>
+        </div>
+
+        <!-- Lista de sesiones -->
+        <div class="sessions-list" id="sessionsList">
+
+          <div class="session-card" data-status="proximas">
+            <div class="session-date-col">
+              <strong>27</strong>
+              <span>Abr</span>
+            </div>
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura"/>
+            <div class="session-info">
+              <strong>Matemáticas — Cálculo diferencial</strong>
+              <p>Laura Gómez · 10:00 AM · 1 hora</p>
+              <span class="session-badge proximas">Próxima</span>
+            </div>
+            <div class="session-actions">
+              <button class="btn-primary btn-sm" onclick="alert('Unirse: meet.google.com/abc-xyz')">Unirse</button>
+              <button class="btn-outline btn-sm" onclick="cancelSession(this, 'Matemáticas')">Cancelar</button>
+            </div>
+          </div>
+
+          <div class="session-card" data-status="proximas">
+            <div class="session-date-col">
+              <strong>29</strong>
+              <span>Abr</span>
+            </div>
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos"/>
+            <div class="session-info">
+              <strong>Inglés — Preparación IELTS</strong>
+              <p>Carlos Martínez · 3:00 PM · 1.5 horas</p>
+              <span class="session-badge proximas">Próxima</span>
+            </div>
+            <div class="session-actions">
+              <button class="btn-outline btn-sm" onclick="cancelSession(this, 'Inglés')">Cancelar</button>
+            </div>
+          </div>
+
+          <div class="session-card" data-status="proximas">
+            <div class="session-date-col">
+              <strong>2</strong>
+              <span>May</span>
+            </div>
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana"/>
+            <div class="session-info">
+              <strong>Programación — Python básico</strong>
+              <p>Ana Torres · 5:00 PM · 2 horas</p>
+              <span class="session-badge proximas">Próxima</span>
+            </div>
+            <div class="session-actions">
+              <button class="btn-outline btn-sm" onclick="cancelSession(this, 'Programación')">Cancelar</button>
+            </div>
+          </div>
+
+          <div class="session-card" data-status="completadas">
+            <div class="session-date-col">
+              <strong>22</strong>
+              <span>Abr</span>
+            </div>
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos"/>
+            <div class="session-info">
+              <strong>Inglés — Conversación avanzada</strong>
+              <p>Carlos Martínez · 11:00 AM · 2 horas</p>
+              <span class="session-badge completadas">Completada</span>
+            </div>
+            <div class="session-actions">
+              <button class="btn-rate" onclick="openRating('Carlos Martínez')">Calificar</button>
+            </div>
+          </div>
+
+          <div class="session-card" data-status="completadas">
+            <div class="session-date-col">
+              <strong>19</strong>
+              <span>Abr</span>
+            </div>
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura"/>
+            <div class="session-info">
+              <strong>Matemáticas — Integrales</strong>
+              <p>Laura Gómez · 10:00 AM · 1.5 horas</p>
+              <span class="session-badge completadas">Completada</span>
+            </div>
+            <div class="session-actions">
+              <button class="btn-rate" onclick="openRating('Laura Gómez')">Calificar</button>
+            </div>
+          </div>
+
+          <div class="session-card" data-status="canceladas">
+            <div class="session-date-col">
+              <strong>10</strong>
+              <span>Abr</span>
+            </div>
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana"/>
+            <div class="session-info">
+              <strong>Programación — JavaScript</strong>
+              <p>Ana Torres · 4:00 PM · 1 hora</p>
+              <span class="session-badge canceladas">Cancelada</span>
+            </div>
+            <div class="session-actions">
+              <a href="/pages/search.html" class="btn-outline btn-sm">Reagendar</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB: TUTORES FAVORITOS -->
+      <div class="dash-tab" id="tab-tutores">
+        <h1 class="dash-title">Mis tutores</h1>
+        <div class="fav-tutors-grid">
+
+          <div class="fav-tutor-card">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura"/>
+            <div class="fav-info">
+              <strong>Laura Gómez</strong>
+              <p>Matemáticas · Física</p>
+              <span class="stars">★★★★★</span>
+              <p class="classes-done">8 clases realizadas</p>
+            </div>
+            <div class="fav-actions">
+              <a href="/pages/tutor-profile.html?id=1" class="btn-outline btn-sm">Ver perfil</a>
+              <a href="/pages/tutor-profile.html?id=1" class="btn-primary btn-sm">Reservar</a>
+            </div>
+          </div>
+
+          <div class="fav-tutor-card">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos"/>
+            <div class="fav-info">
+              <strong>Carlos Martínez</strong>
+              <p>Inglés · Francés</p>
+              <span class="stars">★★★★★</span>
+              <p class="classes-done">3 clases realizadas</p>
+            </div>
+            <div class="fav-actions">
+              <a href="/pages/tutor-profile.html?id=2" class="btn-outline btn-sm">Ver perfil</a>
+              <a href="/pages/tutor-profile.html?id=2" class="btn-primary btn-sm">Reservar</a>
+            </div>
+          </div>
+
+          <div class="fav-tutor-card">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana"/>
+            <div class="fav-info">
+              <strong>Ana Torres</strong>
+              <p>Programación · IA</p>
+              <span class="stars">★★★★★</span>
+              <p class="classes-done">1 clase realizada</p>
+            </div>
+            <div class="fav-actions">
+              <a href="tutor-profile.html?id=3" class="btn-outline btn-sm">Ver perfil</a>
+              <a href="tutor-profile.html?id=3" class="btn-primary btn-sm">Reservar</a>
+            </div>
+          </div>
+
+        </div>
+        <div style="margin-top:24px">
+          <a href="/pages/search.html" class="btn-outline">+ Buscar más tutores</a>
+        </div>
+      </div>
+
+      <!-- TAB: MI PERFIL -->
+      <div class="dash-tab" id="tab-perfil">
+        <h1 class="dash-title">Mi perfil</h1>
+        <div class="profile-form-card">
+          <div class="profile-avatar-row">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Avatar" id="profileAvatar"/>
+            <div>
+              <button class="btn-outline btn-sm">Cambiar foto</button>
+              <p>JPG o PNG. Máx 2MB</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Nombre completo</label>
+              <input type="text" value="Andrés Peña" id="profileFullName"/>
+            </div>
+            <div class="field-group">
+              <label>Correo electrónico</label>
+              <input type="email" value="andres@email.com"/>
+            </div>
+            <div class="field-group">
+              <label>Teléfono</label>
+              <input type="text" value="+57 301 234 5678"/>
+            </div>
+            <div class="field-group">
+              <label>Ciudad</label>
+              <input type="text" value="Barranquilla"/>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="saveProfile()">Guardar cambios</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL CALIFICACIÓN -->
+  <div class="modal-overlay" id="ratingModal" style="display:none">
+    <div class="modal-box">
+      <h3>Calificar sesión</h3>
+      <p id="ratingTutorName"></p>
+      <div class="star-selector" id="starSelector">
+        <span data-val="1">★</span>
+        <span data-val="2">★</span>
+        <span data-val="3">★</span>
+        <span data-val="4">★</span>
+        <span data-val="5">★</span>
+      </div>
+      <textarea id="ratingComment" placeholder="Deja un comentario (opcional)..."></textarea>
+      <div class="modal-btns">
+        <button class="btn-primary" onclick="submitRating()">Enviar calificación</button>
+        <button class="btn-ghost" onclick="closeRating()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
